@@ -2,9 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import bookRoutes from './routes/bookRoutes.js';
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -18,5 +20,8 @@ app.get("/" , (req, res) =>{
     res.send("API is running...😘😘😘");
 });
 
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/books", bookRoutes);
 
 export default app;
